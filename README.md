@@ -10,7 +10,6 @@ I used:
 - ReactJS: functional components and hooks
 - Redux-Toolkit
 - React-router-dom
-- React-hook-form
 - Edamam API
 - Axios
 - Material-UI
