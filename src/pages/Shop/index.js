@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 const Shop = () => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
       <Shops />
       <ShopProducts />
     </Box>

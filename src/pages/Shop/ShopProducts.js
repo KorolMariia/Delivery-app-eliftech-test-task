@@ -26,7 +26,7 @@ const ShopProducts = memo(() => {
 
   return (
     <Box sx={{ maxHeight: '70vh', overflow: 'auto', paddingRight: '10px' }}>
-      <Grid container spacing={2} justifyContent='center'>
+      <Grid container spacing={3} justifyContent='center'>
         {shopProducts.map(({ recipe }) => <ProductCard product={recipe} key={recipe.uri} />)}
       </Grid>
     </Box>
