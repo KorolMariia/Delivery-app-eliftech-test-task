@@ -48,7 +48,7 @@ const ProductCard = memo(({ product, q }) => {
   };
 
   return (
-    <Grid key={uri} item xs={12} sm={8} md={6} lg={6}>
+    <Grid key={uri} item xs={12} sm={8} md={6} lg={6} >
       <Card variant="outlined" sx={{ display: 'flex', height: '250px' }}>
         <CardMedia
           component="img"

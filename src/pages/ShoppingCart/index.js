@@ -10,7 +10,7 @@ const ShoppingCart = () => {
       <Typography variant="subtitle1" >
         Your order <FavoriteOutlinedIcon />
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between' }}>
         <Form />
         <Order />
       </Box>
