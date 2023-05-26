@@ -7,10 +7,10 @@ const Order = memo(() => {
   const productsInCart = useSelector(({ delivery }) => delivery.productsInCart);
 
   return (
-    <Box sx={{ maxHeight: '55vh', overflow: 'auto', padding: '10px' }}>
-      <Grid container spacing={2} justifyContent='center'>
+    <Box sx={{ maxHeight: '50vh', overflow: 'auto', padding: '10px' }}>
+      <Grid container spacing={3} justifyContent='center'>
         {productsInCart.length > 0 ?
-          productsInCart.map((recipe) => <ProductCard product={recipe} key={recipe.uri} />)
+          productsInCart.map((product) => <ProductCard product={product.product} q={product.quantity} key={product.product.uri} />)
           : <Typography variant="subtitle1" >
             You haven't added any products to your order yet.
           </Typography>

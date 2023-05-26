@@ -35,11 +35,26 @@ const deliverySlice = createSlice({
     },
     addToCart: (state, action) => {
       state.productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || [];
-      const productId = state.productsInCart ? state.productsInCart.map((product) => product.uri) : null;
-      productId.includes(action.payload.uri) ?
+      const productId = state.productsInCart ? state.productsInCart.map(({ product }) => product.uri) : null;
+      console.log(action.payload.product.uri)
+      productId.includes(action.payload.product.uri) ?
         state.productsInCart = state.productsInCart.filter(
-          (product) => product.uri !== action.payload.uri)
+          ({ product }) => product.uri !== action.payload.product.uri)
         : state.productsInCart.push(action.payload);
+      localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
+    },
+    updateQuantity: (state, action) => {
+      const { productId, quantity } = action.payload;
+      const updatedCart = state.productsInCart.map(item => {
+        if (item.product.uri === productId) {
+          return {
+            ...item,
+            quantity: quantity
+          };
+        }
+        return item;
+      });
+      state.productsInCart = updatedCart;
       localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
     },
   },
@@ -79,6 +94,6 @@ const deliverySlice = createSlice({
   },
 });
 
-export const { setShop, addToCart } = deliverySlice.actions;
+export const { setShop, addToCart, updateQuantity } = deliverySlice.actions;
 
 export default deliverySlice.reducer;

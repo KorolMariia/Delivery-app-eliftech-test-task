@@ -25,6 +25,7 @@ body {
 
 .wrapper {
   min-height: 100vh;
+  padding-bottom: 50px;
   position: relative;
 }
 
@@ -78,4 +79,11 @@ body {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
+}
+
+.coupons {
+  position: absolute;
+  bottom: 0;
+  color: #ce0030;
+  font-size: 0.8rem;
 }
