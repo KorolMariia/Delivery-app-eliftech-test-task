@@ -1,80 +1,71 @@
 import { memo } from 'react';
-import { useForm } from 'react-hook-form';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setCustomer } from '../../state/delivery/deliverySlice';
 
 const Form = memo(() => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const dispatch = useDispatch();
+  const customer = useSelector((state) => state.delivery.customer);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    dispatch(
+      setCustomer({
+        ...customer,
+        [name]: value,
+      })
+    );
+  };
 
   return (
-    <form className="formOrder" onSubmit={handleSubmit}>
-      <div className="user_box">
-        <input
-          {...register('name', {
-            required: true,
-            pattern: /^[A-Za-z]+$/i,
-          })}
-          className="user_box-input"
-          type="text"
-          placeholder="Gwen"
-        />
-        <label className="user_box-label">Name</label>
-        {errors.name?.type === 'required' && (
-          <p className="error">This field is required</p>
-        )}
-        {errors?.name?.type === 'pattern' && (
-          <p className="error">Alphabetical characters only</p>
-        )}
-      </div>
-      <div className="user_box">
-        <input
-          {...register('email', { required: true })}
-          className="user_box-input"
-          type="email"
-          placeholder="example@example.com"
-        />
-        <label className="user_box-label">Email</label>
-        {errors.email?.type === 'required' && (
-          <p className="error">This field is required</p>
-        )}
-      </div>
-      <div className="user_box">
-        <input
-          {...register('phone', {
-            required: true,
-            pattern: /^[A-Za-z]+$/i,
-          })}
-          className="user_box-input"
-          type="text"
-          placeholder="Meyers"
-        />
-        <label className="user_box-label">Phone</label>
-        {errors.phone?.type === 'required' && (
-          <p className="error">This field is required</p>
-        )}
-        {errors?.phone?.type === 'pattern' && (
-          <p className="error">Alphabetical characters only</p>
-        )}
-      </div>
-      <div className="user_box">
-        <input
-          {...register('adress', {
-            required: true,
-            pattern: /^[A-Za-z]+$/i,
-          })}
-          className="user_box-input"
-          type="text"
-          placeholder="Meyers"
-        />
-        <label className="user_box-label">Adress</label>
-        {errors.adress?.type === 'required' && (
-          <p className="error">This field is required</p>
-        )}
-      </div>
-    </form>
+    <div className="formOrder_wrapper">
+      <h2 className="formOrder_title">To place an order, fill out the form</h2>
+      <form className="formOrder">
+        <div className="formOrder_box">
+          <input
+            className="formOrder_input"
+            type="text"
+            name="name"
+            value={customer.name}
+            placeholder="Gwen"
+            onChange={handleInputChange}
+          />
+          <label className="formOrder_label">Name</label>
+        </div>
+        <div className="formOrder_box">
+          <input
+            className="formOrder_input"
+            type="email"
+            name="email"
+            value={customer.email}
+            placeholder="example@example.com"
+            onChange={handleInputChange}
+          />
+          <label className="formOrder_label">Email</label>
+        </div>
+        <div className="formOrder_box">
+          <input
+            className="formOrder_input"
+            type="text"
+            name="phone"
+            value={customer.phone}
+            placeholder="380970000000"
+            onChange={handleInputChange}
+          />
+          <label className="formOrder_label">Phone</label>
+        </div>
+        <div className="formOrder_box">
+          <input
+            className="formOrder_input"
+            type="text"
+            name="address"
+            value={customer.address}
+            placeholder="Center Ln., Apartment 34"
+            onChange={handleInputChange}
+          />
+          <label className="formOrder_label">Adress</label>
+        </div>
+      </form>
+    </div>
   );
 });
 

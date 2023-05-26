@@ -34,14 +34,29 @@ body {
 }
 
 .formOrder {
-  width: 500px;
+  margin-top: 20px;
 }
 
-.user_box {
+
+.formOrder_wrapper {
+  padding: 20px 30px;
+  background: rgba(251, 248, 248, 0.5);
+  box-shadow: 0 15px 25px rgba(199, 199, 199, 0.7);
+  border-radius: 10px;
+}
+
+.formOrder_title {
+  font-size: 1rem;
+  margin: 0 0 30px;
+  padding: 0;
+  text-align: center;
+}
+
+.formOrder_box {
   position: relative;
 }
 
-.user_box-input {
+.formOrder_input {
   width: 100%;
   padding: 10px 0;
   font-size: 14px;
@@ -49,21 +64,25 @@ body {
   border: none;
   outline: none;
   background: transparent;
+  border-bottom: 1px solid #ce0030;
 }
 
-.user_box-label {
+.formOrder_label {
   position: absolute;
   top: -15px;
   left: 0;
+  color: #ce0030;
   font-size: 12px;
 }
 
 .error {
-  color: red;
+  color: #ce0030;
   position: absolute;
-  right: 30px;
-  top: 0;
   font-size: 12px;
+  right: -20px;
+  top: -40px;
+  font-size: 12px;
+  text-align: right;
 }
 
 .error::before {

@@ -23,7 +23,14 @@ const initialState = {
   shops: [],
   selectedShop: 'burgers',
   shopProducts: [],
-  productsInCart: JSON.parse(localStorage.getItem('productsInCart')) || []
+  productsInCart: JSON.parse(localStorage.getItem('productsInCart')) || [],
+  orders: JSON.parse(localStorage.getItem('orders')) || [],
+  customer: {
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+  },
 }
 
 const deliverySlice = createSlice({
@@ -36,7 +43,6 @@ const deliverySlice = createSlice({
     addToCart: (state, action) => {
       state.productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || [];
       const productId = state.productsInCart ? state.productsInCart.map(({ product }) => product.uri) : null;
-      console.log(action.payload.product.uri)
       productId.includes(action.payload.product.uri) ?
         state.productsInCart = state.productsInCart.filter(
           ({ product }) => product.uri !== action.payload.product.uri)
@@ -57,6 +63,18 @@ const deliverySlice = createSlice({
       state.productsInCart = updatedCart;
       localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
     },
+    setCustomer: (state, action) => {
+      state.customer = action.payload;
+    },
+    setOrders: (state, action) => {
+      state.orders = JSON.parse(localStorage.getItem('orders')) || [];
+      state.orders.push(action.payload);
+      localStorage.setItem('orders', JSON.stringify(state.orders));
+    },
+    clearProductsInCart: (state) => {
+      state.productsInCart = [];
+      localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
+    }
   },
 
   extraReducers: (builder) => {
@@ -94,6 +112,6 @@ const deliverySlice = createSlice({
   },
 });
 
-export const { setShop, addToCart, updateQuantity } = deliverySlice.actions;
+export const { setShop, addToCart, updateQuantity, setCustomer, setOrders, clearProductsInCart } = deliverySlice.actions;
 
 export default deliverySlice.reducer;

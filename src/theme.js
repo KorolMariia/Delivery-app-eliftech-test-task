@@ -20,6 +20,12 @@ const theme = createTheme({
           fontSize: '0.8rem',
           fontWeight: 'bold'
         },
+        h6: {
+          marginTop: '40px',
+          textAlign: 'center',
+          fontSize: '0.8rem',
+          fontWeight: 'bold'
+        },
         subtitle1: {
           textAlign: 'center',
           borderBottom: '2px solid #ce0030',

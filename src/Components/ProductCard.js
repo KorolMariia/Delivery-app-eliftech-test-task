@@ -48,15 +48,15 @@ const ProductCard = memo(({ product, q }) => {
   };
 
   return (
-    <Grid key={uri} item xs={12} sm={8} md={6} lg={5}>
-      <Card variant="outlined" sx={{ display: 'flex', height: '220px', maxWidth: '100%' }}>
+    <Grid key={uri} item xs={12} sm={8} md={6} lg={6}>
+      <Card variant="outlined" sx={{ display: 'flex', height: '250px' }}>
         <CardMedia
           component="img"
           image={image}
           alt={label}
-          sx={{ height: '220px', width: '150px' }}
+          sx={{ width: '170px' }}
         />
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <CardHeader
             title={label}
             subheader={`Price: ${totalWeight.toFixed(2)}`}

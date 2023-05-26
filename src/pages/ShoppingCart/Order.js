@@ -11,7 +11,7 @@ const Order = memo(() => {
       <Grid container spacing={3} justifyContent='center'>
         {productsInCart.length > 0 ?
           productsInCart.map((product) => <ProductCard product={product.product} q={product.quantity} key={product.product.uri} />)
-          : <Typography variant="subtitle1" >
+          : <Typography variant="h6" >
             You haven't added any products to your order yet.
           </Typography>
         }
