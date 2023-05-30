@@ -21,7 +21,7 @@ const ConfirmOrder = () => {
 
   const handleApplyCoupon = () => {
     if (couponCode === 'COUPONCODE123' && !couponApplied) {
-      setTotalCost(totalCost - (totalCost * 0.15));
+      setTotalCost(totalCost - (totalCost * 0.15).toFixed(2));
       setMessage('Coupon applied successfully!');
       setCouponCode('');
       setCouponApplied(true);
