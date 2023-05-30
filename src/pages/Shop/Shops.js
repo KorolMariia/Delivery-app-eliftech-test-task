@@ -8,10 +8,17 @@ const Shops = memo(() => {
   const dispatch = useDispatch();
   const shops = useSelector(({ delivery }) => delivery.shops);
   const selectedShop = useSelector(({ delivery }) => delivery.selectedShop);
+  const productsInCart = useSelector(({ delivery }) => delivery.productsInCart);
 
   useEffect(() => {
     dispatch(getShops());
   }, [dispatch]);
+
+  const handleShopClick = (shop) => {
+    if (productsInCart.length === 0) {
+      dispatch(setShop(shop.toLowerCase()));
+    }
+  };
 
   return (
     <List
@@ -24,8 +31,12 @@ const Shops = memo(() => {
           className={
             selectedShop === shop.toLowerCase() ? 'active' : ''
           }
-          onClick={() => dispatch(setShop(shop.toLowerCase()))}
-          sx={{ border: '1px solid #808080', borderRadius: '10px', mb: 1, ...(selectedShop === shop.toLowerCase() && { bgcolor: '#fbec5d' }) }}
+          onClick={() => handleShopClick(shop)}
+          sx={{
+            border: '1px solid #808080', borderRadius: '10px', mb: 1,
+            ...(selectedShop === shop.toLowerCase() && { bgcolor: '#fbec5d' }),
+            ...(productsInCart.length > 0 && selectedShop !== shop.toLowerCase() && { opacity: 0.5 })
+          }}
         >
           <ListItemButton>
             <ListItemIcon>

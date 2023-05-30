@@ -21,7 +21,7 @@ const initialState = {
   loading: false,
   error: null,
   shops: [],
-  selectedShop: 'burgers',
+  selectedShop: JSON.parse(localStorage.getItem('selectedShop')) || 'burgers',
   shopProducts: [],
   productsInCart: JSON.parse(localStorage.getItem('productsInCart')) || [],
   orders: JSON.parse(localStorage.getItem('orders')) || [],
@@ -39,6 +39,7 @@ const deliverySlice = createSlice({
   reducers: {
     setShop: (state, action) => {
       state.selectedShop = action.payload;
+      localStorage.setItem('selectedShop', JSON.stringify(state.selectedShop));
     },
     addToCart: (state, action) => {
       state.productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || [];
