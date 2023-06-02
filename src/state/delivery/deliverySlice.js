@@ -75,6 +75,14 @@ const deliverySlice = createSlice({
     clearProductsInCart: (state) => {
       state.productsInCart = [];
       localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
+    },
+    filterOrders: (state, action) => {
+      const orderNumber = parseInt(action.payload);
+      if (isNaN(orderNumber)) {
+        state.orders = JSON.parse(localStorage.getItem('orders')) || [];
+      } else {
+        state.orders = state.orders.filter((order) => order.id === orderNumber);
+      }
     }
   },
 
@@ -113,6 +121,6 @@ const deliverySlice = createSlice({
   },
 });
 
-export const { setShop, addToCart, updateQuantity, setCustomer, setOrders, clearProductsInCart } = deliverySlice.actions;
+export const { setShop, addToCart, updateQuantity, setCustomer, setOrders, clearProductsInCart, filterOrders } = deliverySlice.actions;
 
 export default deliverySlice.reducer;

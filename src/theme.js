@@ -18,7 +18,8 @@ const theme = createTheme({
       styleOverrides: {
         h5: {
           fontSize: '0.8rem',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          marginBottom: '10px'
         },
         h6: {
           marginTop: '40px',

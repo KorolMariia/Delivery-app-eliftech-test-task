@@ -8,12 +8,14 @@ const ConfirmOrder = () => {
   const dispatch = useDispatch();
   const productsInCart = useSelector(({ delivery }) => delivery.productsInCart);
   const customer = useSelector(({ delivery }) => delivery.customer);
+  const orders = useSelector(({ delivery }) => delivery.orders);
   const [totalCost, setTotalCost] = useState(0);
   const [couponCode, setCouponCode] = useState('');
   const [message, setMessage] = useState('');
   const [couponApplied, setCouponApplied] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [orderId,] = useState(orders.length + 1);
 
   const handleCouponCodeChange = (event) => {
     setCouponCode(event.target.value);
@@ -40,7 +42,8 @@ const ConfirmOrder = () => {
     } else if (productsInCart.length === 0) {
       setErrorMessage('Your cart is empty. Please add some products.');
     } else {
-      dispatch(setOrders({ customer: customer, productsInCart: productsInCart, totalCost: totalCost }));
+      const order = { id: orderId, customer: customer, productsInCart: productsInCart, totalCost: totalCost };
+      dispatch(setOrders(order));
       setShowModal(true);
       setErrorMessage('');
     }
